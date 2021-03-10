@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Animaciones en P&aacute;ginas Web!</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="node_modules/@fortawesome/fontawesome-free/js/brands.js"></script>
+    <script src="node_modules/@fortawesome/fontawesome-free/js/solid.js"></script>
+    <script src="node_modules/@fortawesome/fontawesome-free/js/fontawesome.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="contenido">
+            <div class="datos">
+                <div class="introduce">
+                    <h3> Introduce el n&uacute;mero de nodos: </h3>
+                    <div class="num-nodos">
+                        <input type="number" id="cantidad" autocomplete="off" min="1">
+                        <button class="aleatorio" id="alea-cantidad"> Aleatorio </button>
+                    </div>
+                </div>
+                <div class="rellena">
+                    <h3> Rellena los valores de los nodos: </h3>
+                    <button class="aleatorio" id="alea-valores"> Aleatorio </button>
+                    <div class="carrusel">
+                        <div id="izquierda"><i class="fas fa-backward"></i></div>                        
+                        <div class="valores">
+                            
+                        </div>
+                        <div id="derecha"><i class="fas fa-forward"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-control">
+                <button id="btn-qs" disabled> QuickSort </button>
+                <button id="btn-ss" disabled> SelectionSort </button>
+                <button id="btn-cs" disabled> CountingSort </button>
+            </div>
+            <div class="alerta">
+                <h2 id="msg-alerta"></h2>
+            </div>
+        </div>
+    </header>
+    <div class="animacion">
+        <div class="contenido">
+            <h1 id="nombre-anim"></h1>
+            <p id="estado"></p>
+            <div class="controles">
+                <div class="panel-control">
+                    <button id="btn-play" disabled> Iniciar Animación </button>
+                    <button id="btn-pause" disabled> Pausar Animación </button>
+                    <button id="btn-restart" disabled> Reiniciar Animación </button>
+                </div>
+            </div>       
+                
+        </div>
+        <div id="pantallas">
+           
+        </div>
+    </div>
+
+    
+
+    <script src="node_modules/animejs/lib/anime.min.js"></script>
+    <script src="guion.js"></script>
+    <script src="animacion.js"></script>
+    <script>
+        $("#btn-empezar").on("click", function (ev) {
+            ev.preventDefault();
+            anime({
+                targets: '.demo',
+                translateX: 240,
+                translateY: 240,
+                easing: 'easeInOutQuad'
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,153 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.contenido {
+    margin: 0px auto;
+    width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #000000;   
+    box-shadow: 0 0 10px #cacaca;         
+}
+
+.datos>div {
+    margin: 10px 5px;
+}
+
+.num-nodos {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#cantidad {
+    margin-right: 25px;
+}
+
+.aleatorio {
+    padding: 10px;
+    font-size: 15px;
+    background-color: #c0042a;
+    border: 0;
+    color: #e4e3e3;
+    outline: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.aleatorio:hover {
+    background-color: #df3154;
+    color: #000000;
+    box-shadow: 0px 0px 15px #cacaca;
+}
+
+.datos>div h3 {
+    font-size: 25px;
+    padding: 8px;
+}
+
+.datos>div input {
+    width: 60px;
+    height: 15px;
+    padding: 5px;
+}
+
+.panel-control {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+}
+
+.panel-control button{
+    border-radius: 10px;
+    border: 0;
+    font-size: 17px;
+    padding: 10px;
+    width: 30%;
+    cursor: pointer;
+}
+
+.panel-control button:hover{
+    background-color: lightgray;
+}
+
+
+.rellena {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.carrusel {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
+}
+
+.carrusel div {
+    cursor: pointer;
+    color: #000;
+}
+
+.carrusel div:hover {
+    color: #fbaba5;
+}
+
+.valores {
+    width: 270px;   
+    border: 1px solid #e4e3e3;
+    display: flex;
+    flex-direction: row;
+    padding: 8px;
+    margin: 10px 0;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    height: 31px;
+    
+}
+
+.pantallas{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.pantalla{   
+    display: flex;
+    width: 95%;
+    border: 1px solid #000;    
+    margin: 0px auto;
+    min-height: 100px;
+   align-items: center;
+}
+
+.nodoHTML{    
+    flex: auto;
+    border: 1px solid lightgreen;
+    text-align: center;
+    padding: 2px;
+    margin: 4px 2px 4px 2px;
+    max-height: 25px;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="anime.css">
+</head>
+
+<body>
+    <div class="demo" data-x="50px">
+
+    </div>
+
+    <script src="node_modules/animejs/lib/anime.min.js"></script>
+    <script>
+        anime({
+            targets: '.demo',
+            translateX: [
+                { value: 250, duration: 1000, delay: 500 },
+                { value: 0, duration: 1000, delay: 500 }
+            ],
+            translateY: [
+                { value: -40, duration: 500 },
+                { value: 40, duration: 500, delay: 1000 },
+                { value: 0, duration: 500, delay: 1000 }
+            ],
+            scaleX: [
+                { value: 4, duration: 100, delay: 500, easing: 'easeOutExpo' },
+                { value: 1, duration: 900 },
+                { value: 4, duration: 100, delay: 500, easing: 'easeOutExpo' },
+                { value: 1, duration: 900 }
+            ],
+            scaleY: [
+                { value: [1.75, 1], duration: 500 },
+                { value: 2, duration: 50, delay: 1000, easing: 'easeOutExpo' },
+                { value: 1, duration: 450 },
+                { value: 1.75, duration: 50, delay: 1000, easing: 'easeOutExpo' },
+                { value: 1, duration: 450 }
+            ],
+            easing: 'easeOutElastic(1, .8)',
+            loop: true
+        });
+    </script>
+</body>
+
+</html>
