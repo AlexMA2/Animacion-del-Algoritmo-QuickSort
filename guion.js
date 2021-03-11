@@ -1,5 +1,15 @@
 $(function () {
 
+    /*
+        * BUG 01: A veces, al aumentar el número de nodos, no se crean inputs para introducir sus valores.
+        * BUG 02: Al cambiar el número de nodos deberia de borrarse el array de animación.
+        * BUG 03: Cuando el ultimo elemento es menor que el pivote, se traba la animacion        
+    */
+
+    /*TODO:
+        * Mejorar la función para llevar elementos a sus respectivas posiciones
+        * Eliminar el array de animaciçon ante cualquier cambio en la entrada y reiniciar las variables
+    */
     let cantidadNodos = 0;
     let veloInicial = 40;
     let velocidad = veloInicial;
@@ -89,6 +99,7 @@ $(function () {
     let comun = "Animación de ordenamiento con ";
 
     $("#btn-qs").on("click", function (ev) {
+
         $("#nombre-anim").text(comun + "QuickSort");
         $("#estado").text("Animación por empezar");
         toggleBotonesAnimacion(false);
@@ -96,6 +107,7 @@ $(function () {
     });
 
     $("#btn-ss").on("click", function (ev) {
+
         $("#nombre-anim").text(comun + "SelectionSort");
         $("#estado").text("Animación por empezar");
         toggleBotonesAnimacion(false);
@@ -103,6 +115,7 @@ $(function () {
     });
 
     $("#btn-cs").on("click", function (ev) {
+
         $("#nombre-anim").text(comun + "CountingSort");
         $("#estado").text("Animación por empezar");
         toggleBotonesAnimacion(false);
@@ -143,36 +156,39 @@ $(function () {
 
     const crearPantalla = (id) => {
         let pantallaHTML = "<div class='pantalla' id='p" + id + "'></div>";
-        $("#pantallas").append(pantallaHTML);        
+        $("#pantallas").append(pantallaHTML);
         console.log(pantallaHTML);
     }
 
     const crearListaDeNodos = (tipo) => {
-        if(LISTACREADA == false){
-            const MAXELEMENTOS = 50;
+        if (LISTACREADA) {
+            $("#pantallas").empty();          
+        }
+
+        const MAXELEMENTOS = 50;
         let contador = 1;
-        
-        crearPantalla(contador);      
-        let pantalla = $("#p" + contador);  
-        
+
+        crearPantalla(contador);
+        let pantalla = $("#p" + contador);
+
         let maximun = 50;
         if (tipo == 1) {
             $(".valores input").each(function (index, element) {
-                
+
                 let nodo = crearNodoHTML($(element).val());
                 pantalla.append(nodo);
-                
-                if(index >= maximun){
+
+                if (index >= maximun) {
                     contador += 1;
                     maximun += MAXELEMENTOS;
-                    crearPantalla(contador);  
-                    pantalla = $("#p" + contador);  
+                    crearPantalla(contador);
+                    pantalla = $("#p" + contador);
                 }
             });
         }
         LISTACREADA = true;
-        }
-        
+
+
     }
 
     const estanCompletosLosNodos = () => {
@@ -218,4 +234,4 @@ $(function () {
         }
     }
 
-})  
+})
