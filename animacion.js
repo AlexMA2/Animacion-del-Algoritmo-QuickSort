@@ -19,13 +19,21 @@ $(function () {
     let cancelarI = false;
     let cancelarJ = true;
 
+    let pila = [];
+
+    let izq = 0;
+    let der;
+
+    let dividido = true;
+
     $("#btn-play").on("click", function (ev) {
         ev.preventDefault();
         estado = 1;
         $("#estado").text("Animación ejecutandose");
         longitud = parseInt($("#cantidad").val());
-        j = parseInt($("#cantidad").val()) - 1;
+        der = longitud - 1;
         setBackgrounds();
+        pila.push([izq, der]);
         iniciarIntervalos();
         $(this).prop("disabled", true);
         // animacion.play;
@@ -44,8 +52,31 @@ $(function () {
     });
 
     const iniciarIntervalos = () => {
-        animI = setInterval(incrementarI, tiempoAvance);
-        //animJ = setInterval(reducirJ, tiempoAvance);
+
+        if (pila.length > 0 || !dividido) {
+
+            if (dividido) {
+                dividido = false;
+                let siguiente = pila.pop();
+                i = siguiente[0];
+                piv = siguiente[0];
+                izq = siguiente[0];
+                j = siguiente[1];
+                der = siguiente[1];
+
+                $(".nodoHTML").css("backgroundColor", "#fff");
+
+            }
+            //opacarZona();
+            animI = setInterval(incrementarI, tiempoAvance);
+        }
+        else {
+            //Acabo de ordenar
+            $("#estado").text("Animación terminada");
+            $(".nodoHTML").css("backgroundColor", "#fff");
+            reiniciarDatosAnimacion();
+            estado = 0;
+        }
     }
 
     const setBackgrounds = () => {
@@ -72,6 +103,10 @@ $(function () {
 
             }
         }
+        else if (i >= j) {
+            clearInterval(animI);
+            intercambiar(piv, j);
+        }
     }
 
     const reducirJ = () => {
@@ -80,18 +115,18 @@ $(function () {
             setBackgrounds();
             if (getValor(j) <= getValor(piv)) {
                 clearInterval(animJ);
-                if(i < j){
+                if (i < j) {
                     intercambiar(i, j);
                 }
-                else{
+                else {
                     intercambiar(piv, j);
-                }                
-            }            
+                }
+            }
 
         }
         else {
-            intercambiar(i, j);
             clearInterval(animJ);
+            intercambiar(i, j);
         }
     }
 
@@ -110,17 +145,21 @@ $(function () {
         mover(nodo2, posicion1.left - posicion2.left, posicion1.top - posicion2.top);
 
         setTimeout(() => {
-           
+
             let aux = getValor(a);
             setValor(a, getValor(b));
             setValor(b, aux);
-            if(i < j){
+            if (i < j) {
                 iniciarIntervalos();
-            }   
-            else{
+            }
+            else {
+                //El i y el j se cruzaron, se movio el pivote       
+                dividido = true;
+                console.log("Vamos a dividir en j: " + j);
                 dividir();
-            }            
-           
+
+            }
+
         }, tiempoIntercambio);
     }
 
@@ -140,7 +179,22 @@ $(function () {
     }
 
     const dividir = () => {
-        
+
+        if ((der) - (j + 1) > 0) {
+            pila.push([j + 1, der]);
+        }
+        if ((j - 1) - (izq) > 0) {
+            pila.push([izq, j - 1]);
+        }
+
+        iniciarIntervalos();
+
+    }
+
+    const opacarZona = (desde, hasta) => {
+        for (let iterator = desde; iterator <= hasta; iterator++) {
+            $(".nodoHTML").eq(iterator).css("opacity", "0.5");
+        }
     }
 
     const getValor = (x) => {
@@ -157,7 +211,10 @@ $(function () {
 
     $(".btn-sorts").on("click", function (ev) {
         ev.preventDefault();
-      
+        reiniciarDatosAnimacion();
+    });
+
+    const reiniciarDatosAnimacion = () => {
         if (estado === 1) {
             clearInterval(animI);
             clearInterval(animJ);
@@ -166,7 +223,6 @@ $(function () {
             piv = 0;
             $("#btn-play").prop("disabled", false);
         }
-
-    });
+    }
 
 })

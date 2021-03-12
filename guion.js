@@ -3,7 +3,9 @@ $(function () {
     /*
         * BUG 01: A veces, al aumentar el número de nodos, no se crean inputs para introducir sus valores.
         * BUG 02: Al cambiar el número de nodos deberia de borrarse el array de animación.
-        * BUG 03: Cuando el ultimo elemento es menor que el pivote, se traba la animacion        
+        * BUG 03: Cuando el ultimo elemento es menor que el pivote, se traba la animacion 
+        * BUG 04: Cuando colocas una cantidad aleatoria, luego rellenas aleatoriamente, luego cambias la cantidad aleatoriamente y 
+        * finalmente rellenas aleatoriamente otra vez y le das a QuickSort, se crea tantos noodos como la cantidad anterior      
     */
 
     /*TODO:
@@ -94,6 +96,24 @@ $(function () {
             $("#btn-cs").prop("disabled", false);
 
         }
+    });
+
+    $(".valores").on("keydown", "input", function (ev) {
+        
+        let indexActual = $(this).index();
+        let longitudDeInputs = $(".valores input").length - 1;
+        console.log(indexActual + " - " + longitudDeInputs);
+        if (ev.keyCode == 39) { //derecha
+            if(indexActual < longitudDeInputs){
+                $(".valores input").eq(indexActual + 1).focus();
+            }
+        }
+        else if (ev.keyCode == 37) { //izquierda
+            if(indexActual > 0){
+                $(".valores input").eq(indexActual - 1).focus();
+            }
+        }
+        
     });
 
     let comun = "Animación de ordenamiento con ";
