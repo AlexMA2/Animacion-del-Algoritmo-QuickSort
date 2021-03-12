@@ -8,36 +8,44 @@ $(function () {
     let j;
     let piv = 0;
     let longitud = 1;
-    const tiempo = 1200;
+    const tiempoAvance = 800;
+    const tiempoIntercambio = 2000;
 
     let animI;
     let animJ;
+
+    let estado = 0;
 
     let cancelarI = false;
     let cancelarJ = true;
 
     $("#btn-play").on("click", function (ev) {
+        ev.preventDefault();
+        estado = 1;
+        $("#estado").text("Animación ejecutandose");
         longitud = parseInt($("#cantidad").val());
         j = parseInt($("#cantidad").val()) - 1;
-        $("#estado").text("Animación ejecutandose");
         setBackgrounds();
         iniciarIntervalos();
+        $(this).prop("disabled", true);
         // animacion.play;
     });
 
     $("#btn-pause").on("click", function (ev) {
+        ev.preventDefault();
         $("#estado").text("Animación pausada");
         //animacion.pause;
     });
 
     $("#btn-restart").on("click", function (ev) {
+        ev.preventDefault();
         $("#estado").text("Animación reiniciada");
         //animacion.restart;
     });
 
     const iniciarIntervalos = () => {
-        animI = setInterval(incrementarI, tiempo);
-        //animJ = setInterval(reducirJ, tiempo);
+        animI = setInterval(incrementarI, tiempoAvance);
+        //animJ = setInterval(reducirJ, tiempoAvance);
     }
 
     const setBackgrounds = () => {
@@ -60,7 +68,7 @@ $(function () {
 
             if (getValor(i) > getValor(piv)) {
                 clearInterval(animI);
-                animJ = setInterval(reducirJ, tiempo);
+                animJ = setInterval(reducirJ, tiempoAvance);
 
             }
         }
@@ -72,13 +80,23 @@ $(function () {
             setBackgrounds();
             if (getValor(j) <= getValor(piv)) {
                 clearInterval(animJ);
-                intercambiar(i, j);
-            }
+                if(i < j){
+                    intercambiar(i, j);
+                }
+                else{
+                    intercambiar(piv, j);
+                }                
+            }            
 
+        }
+        else {
+            intercambiar(i, j);
+            clearInterval(animJ);
         }
     }
 
     const intercambiar = (a, b) => {
+
         let nodo1 = getNodo(a);
         let nodo2 = getNodo(b);
 
@@ -88,9 +106,22 @@ $(function () {
         nodo1.css("position", "relative");
         nodo2.css("position", "relative");
 
-        mover(nodo1, posicion2.left, posicion2.top);
-        mover(nodo2, posicion1.left, posicion1.top);
+        mover(nodo1, posicion2.left - posicion1.left, posicion2.top - posicion1.top);
+        mover(nodo2, posicion1.left - posicion2.left, posicion1.top - posicion2.top);
 
+        setTimeout(() => {
+           
+            let aux = getValor(a);
+            setValor(a, getValor(b));
+            setValor(b, aux);
+            if(i < j){
+                iniciarIntervalos();
+            }   
+            else{
+                dividir();
+            }            
+           
+        }, tiempoIntercambio);
     }
 
     const mover = (nodo, x, y) => {
@@ -98,15 +129,18 @@ $(function () {
             opacity: 0.5,
             left: x + 'px',
             top: y + 'px'
-        }, 5000, function () {
+        }, tiempoIntercambio, function () {
             nodo.css({
                 opacity: 1,
-                position: "static"
+                position: "static",
+                top: 0,
+                left: 0
             });
-            let aux = getValor(j);
-            setValor(j, getValor(i));
-            setValor(i, aux);
         });
+    }
+
+    const dividir = () => {
+        
     }
 
     const getValor = (x) => {
@@ -120,5 +154,19 @@ $(function () {
     const getNodo = (x) => {
         return $(".nodoHTML").eq(x);
     }
+
+    $(".btn-sorts").on("click", function (ev) {
+        ev.preventDefault();
+      
+        if (estado === 1) {
+            clearInterval(animI);
+            clearInterval(animJ);
+            i = 0;
+            j = 0;
+            piv = 0;
+            $("#btn-play").prop("disabled", false);
+        }
+
+    });
 
 })

@@ -37,9 +37,9 @@
                 </div>
             </div>
             <div class="panel-control">
-                <button id="btn-qs" disabled> QuickSort </button>
-                <button id="btn-ss" disabled> SelectionSort </button>
-                <button id="btn-cs" disabled> CountingSort </button>
+                <button class="btn-sorts" id="btn-qs" disabled> QuickSort </button>
+                <button class="btn-sorts" id="btn-ss" disabled> SelectionSort </button>
+                <button class="btn-sorts" id="btn-cs" disabled> CountingSort </button>
             </div>
             <div class="alerta">
                 <h2 id="msg-alerta"></h2>
@@ -64,24 +64,9 @@
         </div>
     </div>
 
-    
-
-    <script src="node_modules/animejs/lib/anime.min.js"></script>
     <script src="guion.js"></script>
     <script src="animacion.js"></script>
-    <script>
-        $("#btn-empezar").on("click", function (ev) {
-            ev.preventDefault();
-            anime({
-                targets: '.demo',
-                translateX: 240,
-                translateY: 240,
-                easing: 'easeInOutQuad'
-            });
-        });
-
-    </script>
-
+    
 </body>
 
 </html>
