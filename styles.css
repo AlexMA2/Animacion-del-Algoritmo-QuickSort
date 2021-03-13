@@ -192,11 +192,15 @@ body {
     outline: none;
     border: none;
     border-bottom: 1px solid #ccc;
-    margin-right: 15px;
+    margin-right: 15px;   
 }
 
 .item-config input[type="checkbox"] {
     transform: scale(1.5);
+}
+
+.item-config input[type="number"] {
+    padding: 3px;
 }
 
 .cabecera-opcion {
@@ -215,7 +219,7 @@ body {
 .cuerpo-opcion {
     background-color: #063B86;
     width: 540px;
-    height: 320px;
+    height: 330px;
     color: #fff;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;

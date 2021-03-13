@@ -15,6 +15,7 @@ $(function () {
     const aceleracion = 0.2;
     let toLeft;
     let toRight;
+    let permiteRepetidos = false;
 
     $("#cantidad").on("input", function (ev) {
         ev.preventDefault();
@@ -86,14 +87,16 @@ $(function () {
 
     $("#alea-valores").on("click", function (ev) {
         ev.preventDefault();
-        $(".valores input").each(function () {
+        if(!isNaN(parseInt($("#cantidad").val()))){
+            $(".valores input").each(function () {
 
-            $(this).val(Math.round(Math.random() * 200 - 100));
-
-        });
-        $("#btn-qs").prop("disabled", false);
-        $("#btn-ss").prop("disabled", false);
-        $("#btn-cs").prop("disabled", false);
+                $(this).val(Math.round(Math.random() * 200 - 100));
+    
+            });
+            $("#btn-qs").prop("disabled", false);
+            $("#btn-ss").prop("disabled", false);
+            $("#btn-cs").prop("disabled", false);
+        }        
 
     });
 
@@ -134,11 +137,16 @@ $(function () {
     
     let oculto = false;
 
+    tippy('#popup-btn-listo', {
+        content: 'abasf',
+    });
+
     $("#btn-qs").on("click", function (ev) {        
         ocultarConfiguraciones();          
         aparecerAnimaciones();
         toggleBotonesAnimacion(false);
         crearListaDeNodos();
+        
     });
 
     const ocultarConfiguraciones = () => {

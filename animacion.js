@@ -1,23 +1,20 @@
 $(function () {
 
-    const bgColorPivote = "#DAAADB"; //morado
-    const bgColorI = "#F8A1A4"; // rojo
-    const bgColorJ = "#98E0AD"; //verde
+    let bgColorPivote = "#DAAADB"; //morado
+    let bgColorI = "#F8A1A4"; // rojo
+    let bgColorJ = "#98E0AD"; //verde
+    let tiempoAvance = 800;
+    let tiempoIntercambio = 2000;    
 
     let i = 0;
     let j;
     let piv = 0;
-    let longitud = 1;
-    const tiempoAvance = 800;
-    const tiempoIntercambio = 2000;
+    let longitud = 1;    
 
     let animI;
     let animJ;
 
     let estado = 0;
-
-    let cancelarI = false;
-    let cancelarJ = true;
 
     let pila = [];
 
@@ -242,6 +239,8 @@ $(function () {
 
     // Configuarciones
 
-    $("#t-intercambio").on('');
+    $("#guardar-config").on('click', function(){
+
+    });
 
 })
