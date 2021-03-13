@@ -7,11 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Animaciones en P&aacute;ginas Web!</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="node_modules/@fortawesome/fontawesome-free/js/brands.js"></script>
-    <script src="node_modules/@fortawesome/fontawesome-free/js/solid.js"></script>
-    <script src="node_modules/@fortawesome/fontawesome-free/js/fontawesome.js"></script>
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"    
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -25,9 +23,9 @@
         </div>
         <nav class="navbar navbar-expand-lg navbar-light bg-gray">
             <ul class="nav">
-                <li class="nav-item mx-2 text-white"><i class="fas fa-book"></i> Definici&oacute;n </li>
-                <li class="nav-item mx-2 text-white"><i class="fas fa-calculator"></i> Complejidad </li>
-                <li class="nav-item mx-2 text-white"><i class="fas fa-code"></i> C&oacute;digo </li>
+                <li class="nav-item mx-2 text-white"><i class="fa fa-book"></i> Definici&oacute;n </li>
+                <li class="nav-item mx-2 text-white"><i class="fa fa-calculator"></i> Complejidad </li>
+                <li class="nav-item mx-2 text-white"><i class="fa fa-code"></i> C&oacute;digo </li>
             </ul>
         </nav>
     </header>
@@ -35,7 +33,7 @@
         <div class="row ocultar">
             <div class="col-6 opcion">
                 <div class="cabecera-opcion martillo">
-                    <i class="fas fa-hammer mr-2"></i>
+                    <i class="fa fa-gavel mr-2"></i>                    
                     <h2> Crea tu array </h2>
                 </div>
                 <div class="datos cuerpo-opcion col-12">
@@ -50,48 +48,51 @@
                         <h3> Rellena los valores de los nodos: </h3>
                         <button class="aleatorio" id="alea-valores"> Aleatorio </button>
                         <div class="carrusel">
-                            <div id="izquierda"><i class="fas fa-backward"></i></div>
+                            <div id="izquierda"><i class="fa fa-backward"></i></div>
                             <div class="valores">
 
                             </div>
-                            <div id="derecha"><i class="fas fa-forward"></i></div>
+                            <div id="derecha"><i class="fa fa-forward"></i></div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-6 opcion">
                 <div class="cabecera-opcion engranaje">
-                    <i class="fas fa-cog mr-2"></i>
+                    <i class="fa fa-cog mr-2"></i>
                     <h2> Configuraci&oacute;n </h2>
                 </div>
                 <div class="config cuerpo-opcion">
                     <div>
                         <div class="item-config">
-                            <p class="item-config-name">Tiempo de Intercambio: </p> <input type="number" class="mb-3">
+                            <p class="item-config-name">Tiempo de Intercambio: </p> <input type="number" id="t-intercambio" class="mb-3">
                             <p> ms </p>
                         </div>
                         <div class="item-config">
-                            <p class="item-config-name">Tiempo de Recorrido: </p> <input type="number" class="mb-3">
+                            <p class="item-config-name">Tiempo de Recorrido: </p> <input type="number" id="t-recorrido" class="mb-3">
                             <p> ms </p>
                         </div>
                         <div class="item-config">
-                            <p class="item-config-name">No permitir n&uacute;meros repetidos: </p> <input
+                            <p class="item-config-name">No permitir n&uacute;meros repetidos: </p> <input id="no-repes"
                                 type="checkbox" class="mt-2">
                         </div>
                         <div class="item-config">
-                            <p class="item-config-name">Color de fondo del Pivote : </p> <input type="color"
+                            <p class="item-config-name">Color de fondo del Pivote : </p> <input type="color" id="bg-pivote"
                                 class="mb-3">
                             <p id="color-bg"></p>
                         </div>
                         <div class="item-config">
-                            <p class="item-config-name">Color de fondo del indice J: </p> <input type="color"
+                            <p class="item-config-name">Color de fondo del indice J: </p> <input type="color" id="bg-j"
                                 class="mb-3">
                             <p id="color-bg"></p>
                         </div>
                         <div class="item-config">
-                            <p class="item-config-name">Color de fondo del indice I: </p> <input type="color"
+                            <p class="item-config-name">Color de fondo del indice I: </p> <input type="color" id="bg-i"
                                 class="mb-3">
                             <p id="color-bg"></p>
+                        </div>
+                        <div class="item-config justify-content-center">
+                            <button class="btn btn-primary"> Guardar configuraci&oacute;n</button>
                         </div>
                     </div>
                 </div>
@@ -100,15 +101,14 @@
         <div class="row align-items-center justify-content-center mt-2">
             <button class="btn btn-success col-6 btn-listo btn-sorts" id="btn-qs" disabled>
                 Listo
-                <i class="fas fa-check-circle text-right"></i>
+                <i class="fa fa-check-circle text-right"></i>
             </button>
         </div>
     </div>
     <div class="container-fluid">
         <div class="animacion">
             <div class="contenido">
-                <h1 id="nombre-anim"> Animaci&oacute;n del ordenamiento por QuickSort </h1>
-                <p id="estado"></p>
+                <p id="estado" class="display-4"></p>
                 <div class="controles">
                     <div class="panel-control">
                         <button id="btn-play" disabled> Iniciar Animación </button>
@@ -168,9 +168,9 @@
            
         </div>
     </div> -->
-    <footer class="bg-dark text-center">        
-            <h2 class="display-6"> &copy;Alex Mamani </h2>
-            <p> Versi&oacute;n 1.1.0 (Actualizado 12/03/2021)</p>        
+    <footer class="bg-dark text-center">
+        <h2 class="display-6"> &copy;Alex Mamani </h2>
+        <p> Versi&oacute;n 1.1.0 (Actualizado 12/03/2021)</p>
     </footer>
     <script src="guion.js"></script>
     <script src="animacion.js"></script>

@@ -33,7 +33,7 @@ $(function () {
     $("#btn-play").on("click", function (ev) {
         ev.preventDefault();
         estado = 1;
-        $("#estado").text("Animación ejecutandose");
+        $("#estado").text("Animación ejecutándose");
         longitud = parseInt($("#cantidad").val());
         der = longitud - 1;
         setBackgrounds();
@@ -239,5 +239,9 @@ $(function () {
             $("#btn-play").prop("disabled", false);
         }
     }
+
+    // Configuarciones
+
+    $("#t-intercambio").on('');
 
 })

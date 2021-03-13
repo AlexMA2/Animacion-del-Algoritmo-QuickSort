@@ -17,6 +17,10 @@ body {
     display: flex;   
 }
 
+.animacion {
+    display: none;
+}
+
 .header {
     width: 100%;
     display: flex;
@@ -195,10 +199,6 @@ body {
     transform: scale(1.5);
 }
 
-.opcion {
-    padding: !important;
-}
-
 .cabecera-opcion {
     background-color: #031D42;
     color: #fff;
@@ -208,24 +208,24 @@ body {
     width: 540px;
 }
 
-.cabecera-opcion svg {
+.cabecera-opcion i {
     font-size: 20px;
 }
 
 .cuerpo-opcion {
     background-color: #063B86;
     width: 540px;
-    height: 300px;
+    height: 320px;
     color: #fff;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
 }
 
-.martillo svg {
+.martillo i {
     animation: golpearMartillo 1s linear 0s infinite;
 }
 
-.engranaje svg {
+.engranaje i {
     animation: girarEngranaje 3s linear 0s infinite;
 }
 
@@ -235,7 +235,7 @@ body {
     text-transform: uppercase;
 }
 
-.btn-listo svg {
+.btn-listo i {
     font-size: 40px;
 }
 
@@ -252,7 +252,7 @@ footer {
         transform: rotateZ(0deg);
     }
     50% {
-        transform: rotateZ(50deg);
+        transform: rotateZ(150deg);
     }
     100% {
         transform: rotateZ(0deg);
