@@ -2,10 +2,7 @@ $(function () {
 
     /*
         * BUG 01: A veces, al aumentar el número de nodos, no se crean inputs para introducir sus valores.
-        * BUG 02: Al cambiar el número de nodos deberia de borrarse el array de animación.
-        * BUG 03: Cuando el ultimo elemento es menor que el pivote, se traba la animacion 
-        * BUG 04: Cuando colocas una cantidad aleatoria, luego rellenas aleatoriamente, luego cambias la cantidad aleatoriamente y 
-        * finalmente rellenas aleatoriamente otra vez y le das a QuickSort, se crea tantos noodos como la cantidad anterior      
+        * BUG 02: Al cambiar el número de nodos deberia de borrarse el array de animación.       
     */
 
     /*TODO:
@@ -21,13 +18,33 @@ $(function () {
 
     $("#cantidad").on("input", function (ev) {
         ev.preventDefault();
+
         if (ev.target.value > cantidadNodos) {
             $("#btn-qs").prop("disabled", true);
             $("#btn-ss").prop("disabled", true);
             $("#btn-cs").prop("disabled", true);
             toggleBotonesAnimacion(true);
         }
-        crearArray(ev.target.value);
+        if (ev.target.value === "") {
+            crearArray(0);
+        }
+        else if (ev.target.value > 200) {
+            crearArray(200);
+            $("#cantidad").val(200);
+        }
+        else {
+            crearArray(ev.target.value);
+        }
+
+
+    });
+
+    $("#cantidad").on("keydown", function (ev) {        
+
+        if (ev.keyCode === 190 || ev.keyCode=== 107 || ev.keyCode === 109) {
+
+            ev.preventDefault();
+        }
     });
 
     $("#izquierda").on("mousedown", function (ev) {
@@ -99,21 +116,21 @@ $(function () {
     });
 
     $(".valores").on("keydown", "input", function (ev) {
-        
+
         let indexActual = $(this).index();
         let longitudDeInputs = $(".valores input").length - 1;
-        console.log(indexActual + " - " + longitudDeInputs);
+
         if (ev.keyCode == 39) { //derecha
-            if(indexActual < longitudDeInputs){
+            if (indexActual < longitudDeInputs) {
                 $(".valores input").eq(indexActual + 1).focus();
             }
         }
         else if (ev.keyCode == 37) { //izquierda
-            if(indexActual > 0){
+            if (indexActual > 0) {
                 $(".valores input").eq(indexActual - 1).focus();
             }
         }
-        
+
     });
 
     let comun = "Animación de ordenamiento con ";
@@ -152,19 +169,23 @@ $(function () {
 
         if (numero > cantidadNodos) {
             let nodos = numero - cantidadNodos;
+
             for (let i = 0; i < nodos; i++) {
                 crearInput();
+
             }
             cantidadNodos = numero;
         }
         else if (numero < cantidadNodos) {
 
-            for (let i = numero; i < cantidadNodos; i++) {
-                $(".valores input")[i].remove();
+            while (numero < cantidadNodos) {
+                if ($(".valores input")[numero] == undefined) {
+                    break;
+                }
+                $(".valores input")[numero].remove();
             }
             cantidadNodos = numero;
         }
-
     }
 
     let LISTACREADA = false;
@@ -177,12 +198,12 @@ $(function () {
     const crearPantalla = (id) => {
         let pantallaHTML = "<div class='pantalla' id='p" + id + "'></div>";
         $("#pantallas").append(pantallaHTML);
-        console.log(pantallaHTML);
+
     }
 
     const crearListaDeNodos = (tipo) => {
         if (LISTACREADA) {
-            $("#pantallas").empty();          
+            $("#pantallas").empty();
         }
 
         const MAXELEMENTOS = 50;

@@ -34,6 +34,7 @@ $(function () {
         der = longitud - 1;
         setBackgrounds();
         pila.push([izq, der]);
+        
         iniciarIntervalos();
         $(this).prop("disabled", true);
         // animacion.play;
@@ -62,18 +63,21 @@ $(function () {
                 piv = siguiente[0];
                 izq = siguiente[0];
                 j = siguiente[1];
-                der = siguiente[1];
-
-                $(".nodoHTML").css("backgroundColor", "#fff");
-
+                der = siguiente[1];                
+                $(".nodoHTML").css({
+                    "backgroundColor" : "#fff"                    
+                });
+               
             }
-            //opacarZona();
+            
             animI = setInterval(incrementarI, tiempoAvance);
         }
         else {
             //Acabo de ordenar
             $("#estado").text("Animación terminada");
-            $(".nodoHTML").css("backgroundColor", "#fff");
+            $(".nodoHTML").css({
+                "backgroundColor" : "#fff"                
+            });
             reiniciarDatosAnimacion();
             estado = 0;
         }
@@ -154,8 +158,7 @@ $(function () {
             }
             else {
                 //El i y el j se cruzaron, se movio el pivote       
-                dividido = true;
-                console.log("Vamos a dividir en j: " + j);
+                dividido = true;                    
                 dividir();
 
             }
@@ -165,7 +168,7 @@ $(function () {
 
     const mover = (nodo, x, y) => {
         nodo.animate({
-            opacity: 0.5,
+            opacity: 0.3,
             left: x + 'px',
             top: y + 'px'
         }, tiempoIntercambio, function () {
@@ -191,11 +194,15 @@ $(function () {
 
     }
 
-    const opacarZona = (desde, hasta) => {
-        for (let iterator = desde; iterator <= hasta; iterator++) {
-            $(".nodoHTML").eq(iterator).css("opacity", "0.5");
-        }
-    }
+    // const opacarZona = (desde , hasta) => {
+    //     console.log(desde, hasta);
+    //     for (let iterator = desde; iterator <= hasta; iterator++) {
+    //         console.log(iterator);
+    //         $(".nodoHTML").eq(iterator).css("opacity", 1);
+    //     }
+    //     console.log("................................");
+        
+    // }
 
     const getValor = (x) => {
         return parseInt($(".nodoHTML").eq(x).children(".nodo-valor").text())
