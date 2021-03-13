@@ -26,6 +26,10 @@ $(function () {
 
     let dividido = true;
 
+    $("#btn-qs").on("click", function (ev) {        
+        reiniciarDatosAnimacion();
+    });
+
     $("#btn-play").on("click", function (ev) {
         ev.preventDefault();
         estado = 1;
@@ -226,8 +230,12 @@ $(function () {
             clearInterval(animI);
             clearInterval(animJ);
             i = 0;
+            izq = 0;
             j = 0;
             piv = 0;
+            dividido = true;
+            pila = [];
+            estado = 0;
             $("#btn-play").prop("disabled", false);
         }
     }

@@ -11,10 +11,10 @@ body {
 
 .contenido {
     margin: 0px auto;
-    width: 1200px;
-    display: flex;
+    width: 1200px;   
     flex-direction: column;
     align-items: center;
+    display: flex;   
 }
 
 .header {
@@ -24,8 +24,8 @@ body {
     justify-content: center;
     align-items: center;
     padding-bottom: 20px;
-    border-bottom: 2px solid #000000;   
-    box-shadow: 0 0 10px #cacaca;         
+    border-bottom: 2px solid #000000;
+    box-shadow: 0 0 10px #cacaca;
 }
 
 .datos>div {
@@ -41,6 +41,9 @@ body {
 
 #cantidad {
     margin-right: 25px;
+    width: 100px;
+    height: 40px;
+    padding: 5px;
 }
 
 .aleatorio {
@@ -60,15 +63,16 @@ body {
     box-shadow: 0px 0px 15px #cacaca;
 }
 
+.datos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .datos>div h3 {
     font-size: 25px;
     padding: 8px;
-}
-
-.datos>div input {
-    width: 60px;
-    height: 15px;
-    padding: 5px;
 }
 
 .panel-control {
@@ -78,7 +82,7 @@ body {
     width: 100%;
 }
 
-.panel-control button{
+.panel-control button {
     border-radius: 10px;
     border: 0;
     font-size: 17px;
@@ -87,10 +91,9 @@ body {
     cursor: pointer;
 }
 
-.panel-control button:hover{
+.panel-control button:hover {
     background-color: lightgray;
 }
-
 
 .rellena {
     display: flex;
@@ -103,7 +106,7 @@ body {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    width: 90%;
+    width: 100%;
 }
 
 .carrusel div {
@@ -116,38 +119,151 @@ body {
 }
 
 .valores {
-    width: 270px;   
+    width: 350px;
     border: 1px solid #e4e3e3;
     display: flex;
     flex-direction: row;
     padding: 8px;
-    margin: 10px 0;
+    margin: 10px;
     flex-wrap: nowrap;
     overflow: hidden;
-    height: 31px;
-    
+    height: 50px;
+    align-items: center;
 }
 
-.pantallas{
+.valores input {
+    margin-right: 10px;
+    width: 60px;
+    height: 30px;
+    padding: 5px;
+}
+
+.pantallas {
     width: 100%;
     display: flex;
     flex-direction: column;
 }
 
-.pantalla{   
+.pantalla {
     display: flex;
     width: 95%;
-    border: 1px solid #000;    
+    border: 1px solid #000;
     margin: 0px auto;
     min-height: 100px;
-   align-items: center;
+    align-items: center;
 }
 
-.nodoHTML{    
+.nodoHTML {
     flex: auto;
     border: 1px solid lightgreen;
     text-align: center;
     padding: 2px;
     margin: 4px 2px 4px 2px;
     max-height: 25px;
+}
+
+.config {
+    display: flex;
+    flex-direction: column;
+}
+
+.config>div {
+    margin: 18px auto 0 auto;
+}
+
+.item-config {
+    display: flex;
+    flex-direction: row;
+    font-weight: 500;
+    font-size: 17px;
+}
+
+.item-config-name {
+    width: 60%;
+    cursor: pointer;
+}
+
+.item-config input {
+    width: 15%;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    margin-right: 15px;
+}
+
+.item-config input[type="checkbox"] {
+    transform: scale(1.5);
+}
+
+.opcion {
+    padding: !important;
+}
+
+.cabecera-opcion {
+    background-color: #031D42;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 540px;
+}
+
+.cabecera-opcion svg {
+    font-size: 20px;
+}
+
+.cuerpo-opcion {
+    background-color: #063B86;
+    width: 540px;
+    height: 300px;
+    color: #fff;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.martillo svg {
+    animation: golpearMartillo 1s linear 0s infinite;
+}
+
+.engranaje svg {
+    animation: girarEngranaje 3s linear 0s infinite;
+}
+
+.btn-listo {
+    font-size: 40px !important;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.btn-listo svg {
+    font-size: 40px;
+}
+
+footer {    
+    position: fixed;    
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    color: white;
+}
+
+@keyframes golpearMartillo {
+    0% {
+        transform: rotateZ(0deg);
+    }
+    50% {
+        transform: rotateZ(50deg);
+    }
+    100% {
+        transform: rotateZ(0deg);
+    }
+}
+
+@keyframes girarEngranaje {
+    0% {
+        transform: rotateZ(0deg);
+    }
+    100% {
+        transform: rotateZ(360deg);
+    }
 }

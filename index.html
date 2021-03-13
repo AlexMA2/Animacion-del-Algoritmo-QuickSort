@@ -11,39 +11,146 @@
     <script src="node_modules/@fortawesome/fontawesome-free/js/solid.js"></script>
     <script src="node_modules/@fortawesome/fontawesome-free/js/fontawesome.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 
 <body>
-    <header class="header">
-        <div class="contenido">
-            <div class="datos">
-                <div class="introduce">
-                    <h3> Introduce el n&uacute;mero de nodos: </h3>
-                    <div class="num-nodos">
-                        <input type="number" id="cantidad" autocomplete="off" min="1" max="200" required pattern="[0-9]{8}"/>
-                        <button class="aleatorio" id="alea-cantidad"> Aleatorio </button>
-                    </div>
+    <header class="header bg-dark">
+        <div class="titulo-principal">
+            <h1 class="display-2 text-white"> QuickSort </h1>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-gray">
+            <ul class="nav">
+                <li class="nav-item mx-2 text-white"><i class="fas fa-book"></i> Definici&oacute;n </li>
+                <li class="nav-item mx-2 text-white"><i class="fas fa-calculator"></i> Complejidad </li>
+                <li class="nav-item mx-2 text-white"><i class="fas fa-code"></i> C&oacute;digo </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="row ocultar">
+            <div class="col-6 opcion">
+                <div class="cabecera-opcion martillo">
+                    <i class="fas fa-hammer mr-2"></i>
+                    <h2> Crea tu array </h2>
                 </div>
-                <div class="rellena">
-                    <h3> Rellena los valores de los nodos: </h3>
-                    <button class="aleatorio" id="alea-valores"> Aleatorio </button>
-                    <div class="carrusel">
-                        <div id="izquierda"><i class="fas fa-backward"></i></div>                        
-                        <div class="valores">
-                            
+                <div class="datos cuerpo-opcion col-12">
+                    <div class="introduce">
+                        <h3> Introduce el n&uacute;mero de nodos: </h3>
+                        <div class="num-nodos">
+                            <input type="number" id="cantidad" autocomplete="off" min="1" max="200" />
+                            <button class="aleatorio" id="alea-cantidad"> Aleatorio </button>
                         </div>
-                        <div id="derecha"><i class="fas fa-forward"></i></div>
+                    </div>
+                    <div class="rellena">
+                        <h3> Rellena los valores de los nodos: </h3>
+                        <button class="aleatorio" id="alea-valores"> Aleatorio </button>
+                        <div class="carrusel">
+                            <div id="izquierda"><i class="fas fa-backward"></i></div>
+                            <div class="valores">
+
+                            </div>
+                            <div id="derecha"><i class="fas fa-forward"></i></div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="panel-control">
-                <button class="btn-sorts" id="btn-qs" disabled> QuickSort </button>                
-            </div>
-            <div class="alerta">
-                <h2 id="msg-alerta"></h2>
+            <div class="col-6 opcion">
+                <div class="cabecera-opcion engranaje">
+                    <i class="fas fa-cog mr-2"></i>
+                    <h2> Configuraci&oacute;n </h2>
+                </div>
+                <div class="config cuerpo-opcion">
+                    <div>
+                        <div class="item-config">
+                            <p class="item-config-name">Tiempo de Intercambio: </p> <input type="number" class="mb-3">
+                            <p> ms </p>
+                        </div>
+                        <div class="item-config">
+                            <p class="item-config-name">Tiempo de Recorrido: </p> <input type="number" class="mb-3">
+                            <p> ms </p>
+                        </div>
+                        <div class="item-config">
+                            <p class="item-config-name">No permitir n&uacute;meros repetidos: </p> <input
+                                type="checkbox" class="mt-2">
+                        </div>
+                        <div class="item-config">
+                            <p class="item-config-name">Color de fondo del Pivote : </p> <input type="color"
+                                class="mb-3">
+                            <p id="color-bg"></p>
+                        </div>
+                        <div class="item-config">
+                            <p class="item-config-name">Color de fondo del indice J: </p> <input type="color"
+                                class="mb-3">
+                            <p id="color-bg"></p>
+                        </div>
+                        <div class="item-config">
+                            <p class="item-config-name">Color de fondo del indice I: </p> <input type="color"
+                                class="mb-3">
+                            <p id="color-bg"></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </header>
+        <div class="row align-items-center justify-content-center mt-2">
+            <button class="btn btn-success col-6 btn-listo btn-sorts" id="btn-qs" disabled>
+                Listo
+                <i class="fas fa-check-circle text-right"></i>
+            </button>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="animacion">
+            <div class="contenido">
+                <h1 id="nombre-anim"> Animaci&oacute;n del ordenamiento por QuickSort </h1>
+                <p id="estado"></p>
+                <div class="controles">
+                    <div class="panel-control">
+                        <button id="btn-play" disabled> Iniciar Animación </button>
+                        <button id="btn-pause" disabled> Pausar Animación </button>
+                        <button id="btn-restart" disabled> Reiniciar Animación </button>
+                    </div>
+                </div>
+
+            </div>
+            <div id="pantallas">
+
+            </div>
+        </div>
+    </div>
+    <!-- <div class="contenido">
+        <div class="datos">
+            <div class="introduce">
+                <h3> Introduce el n&uacute;mero de nodos: </h3>
+                <div class="num-nodos">
+                    <input type="number" id="cantidad" autocomplete="off" min="1" max="200" required pattern="[0-9]{8}"/>
+                    <button class="aleatorio" id="alea-cantidad"> Aleatorio </button>
+                </div>
+            </div>
+            <div class="rellena">
+                <h3> Rellena los valores de los nodos: </h3>
+                <button class="aleatorio" id="alea-valores"> Aleatorio </button>
+                <div class="carrusel">
+                    <div id="izquierda"><i class="fas fa-backward"></i></div>                        
+                    <div class="valores">
+                        
+                    </div>
+                    <div id="derecha"><i class="fas fa-forward"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-control">
+            <button class="btn-sorts" id="btn-qs" disabled> QuickSort </button>                
+        </div>
+        <div class="alerta">
+            <h2 id="msg-alerta"></h2>
+        </div>
+    </div>
     <div class="animacion">
         <div class="contenido">
             <h1 id="nombre-anim"></h1>
@@ -60,14 +167,14 @@
         <div id="pantallas">
            
         </div>
-    </div>
-    <footer>
-        <h2> &copy;Alex Mamani </h2>
-        <p> Versi&oacute;n 1.0.0 (Actualizado 12/03/2021)</p>
+    </div> -->
+    <footer class="bg-dark text-center">        
+            <h2 class="display-6"> &copy;Alex Mamani </h2>
+            <p> Versi&oacute;n 1.1.0 (Actualizado 12/03/2021)</p>        
     </footer>
     <script src="guion.js"></script>
     <script src="animacion.js"></script>
-    
+
 </body>
 
 </html>

@@ -35,14 +35,10 @@ $(function () {
         else {
             crearArray(ev.target.value);
         }
-
-
     });
 
-    $("#cantidad").on("keydown", function (ev) {        
-
-        if (ev.keyCode === 190 || ev.keyCode=== 107 || ev.keyCode === 109) {
-
+    $("#cantidad").on("keydown", function (ev) {
+        if (ev.keyCode === 190 || ev.keyCode === 107 || ev.keyCode === 109) {
             ev.preventDefault();
         }
     });
@@ -50,7 +46,6 @@ $(function () {
     $("#izquierda").on("mousedown", function (ev) {
         ev.preventDefault();
         toLeft = setInterval(() => { moverCarrusel("left") }, 100);
-
     });
 
     $("#izquierda").on("mouseleave", function (ev) {
@@ -113,6 +108,10 @@ $(function () {
             $("#btn-cs").prop("disabled", false);
 
         }
+        if (ev.target.value > 200) {
+            crearArray(200);
+            $("#cantidad").val(200);
+        }
     });
 
     $(".valores").on("keydown", "input", function (ev) {
@@ -132,32 +131,46 @@ $(function () {
         }
 
     });
+    
+    let oculto = false;
 
-    let comun = "Animación de ordenamiento con ";
-
-    $("#btn-qs").on("click", function (ev) {
-
-        $("#nombre-anim").text(comun + "QuickSort");
-        $("#estado").text("Animación por empezar");
+    $("#btn-qs").on("click", function (ev) {        
+        ocultarConfiguraciones();          
+        aparecerAnimaciones();
         toggleBotonesAnimacion(false);
-        crearListaDeNodos(1);
+        crearListaDeNodos();
     });
 
-    $("#btn-ss").on("click", function (ev) {
+    const ocultarConfiguraciones = () => {
+        if(!oculto){
+            oculto = true;
+            $(".ocultar").slideUp('fast', 'linear', function(){                
+                $("#btn-qs").html("No Listo <i class='fas fa-check-circle text-right'></i>");
+                $("#btn-qs").addClass('btn-danger');
+                $("#btn-qs").removeClass('btn-success');
+            });  
+        }
+        else {
+            oculto = false;
+            $(".ocultar").slideDown('fast', 'linear', function(){                
+                $("#btn-qs").html("Listo <i class='fas fa-check-circle text-right'></i>");
+                $("#btn-qs").addClass('btn-success');
+                $("#btn-qs").removeClass('btn-danger');   
+                         
+            });  
+        }
+    }
 
-        $("#nombre-anim").text(comun + "SelectionSort");
-        $("#estado").text("Animación por empezar");
-        toggleBotonesAnimacion(false);
-        crearListaDeNodos(2);
-    });
-
-    $("#btn-cs").on("click", function (ev) {
-
-        $("#nombre-anim").text(comun + "CountingSort");
-        $("#estado").text("Animación por empezar");
-        toggleBotonesAnimacion(false);
-        crearListaDeNodos(3);
-    });
+    const aparecerAnimaciones = () => {
+        if(oculto){
+            $(".animacion").css("display", "block");   
+            $("#estado").text("Animación por empezar");
+        }
+        else {
+            $(".animacion").css("display", "none");   
+            $("#estado").text("");
+        }
+    }
 
     const toggleBotonesAnimacion = (valor) => {
         $("#btn-play").prop("disabled", valor);
@@ -201,7 +214,7 @@ $(function () {
 
     }
 
-    const crearListaDeNodos = (tipo) => {
+    const crearListaDeNodos = () => {
         if (LISTACREADA) {
             $("#pantallas").empty();
         }
@@ -213,20 +226,20 @@ $(function () {
         let pantalla = $("#p" + contador);
 
         let maximun = 50;
-        if (tipo == 1) {
-            $(".valores input").each(function (index, element) {
 
-                let nodo = crearNodoHTML($(element).val());
-                pantalla.append(nodo);
+        $(".valores input").each(function (index, element) {
 
-                if (index >= maximun) {
-                    contador += 1;
-                    maximun += MAXELEMENTOS;
-                    crearPantalla(contador);
-                    pantalla = $("#p" + contador);
-                }
-            });
-        }
+            let nodo = crearNodoHTML($(element).val());
+            pantalla.append(nodo);
+
+            if (index >= maximun) {
+                contador += 1;
+                maximun += MAXELEMENTOS;
+                crearPantalla(contador);
+                pantalla = $("#p" + contador);
+            }
+        });
+
         LISTACREADA = true;
 
 
@@ -252,10 +265,7 @@ $(function () {
 
     const crearInput = () => {
         let clon = $("#cantidad").clone();
-        clon.css({
-            "width": "40px",
-            "margin-right": "10px"
-        });
+
         clon.val("");
         clon.attr("id", "");
         clon.attr("class", "nodo-value");
