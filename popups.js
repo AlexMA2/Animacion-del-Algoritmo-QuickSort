@@ -37,9 +37,7 @@ tippy('#popup-btn-pause', {
 tippy('#popup-btn-restart', {
     content: 'Reanuda la animación si esta pausada ',
 });
-tippy('#btn-qs', {
-    content: 'Crea la animación',
-});
+
 
 $(function () {
     // const alerta1 = tippy('.alertar1');

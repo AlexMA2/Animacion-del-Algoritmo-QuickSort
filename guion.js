@@ -135,7 +135,7 @@ $(function () {
     let oculto = false;
 
     tippy('#popup-btn-listo', {
-        content: 'abasf',
+        content: 'Click aqui para ver la animacion',
     });
 
     $("#btn-qs").on("click", function (ev) {
@@ -144,9 +144,15 @@ $(function () {
         crearListaDeNodos();
         if(!oculto){
             $("body").css('overflow', 'hidden');
+            tippy('#popup-btn-listo', {
+                content: 'Click aqui para ver la animación',
+            });
         }
         else {
             $("body").css('overflow', 'auto');
+            tippy('#popup-btn-listo', {
+                content: 'Click aqui para volver a la configuración',
+            });
         }
     });
 
@@ -247,9 +253,8 @@ $(function () {
     }
 
     const calcularMaximoPorPantalla = () => {
-        let anchoPantalla = $(".pantalla").innerWidth();
-        console.log(anchoPantalla, anchoNodo, Math.floor(anchoPantalla / anchoNodo));
-        return Math.floor(anchoPantalla / anchoNodo);
+        let anchoPantalla = $(".pantalla").innerWidth();      
+        return Math.floor(anchoPantalla / anchoNodo) - 1;
     }
 
 

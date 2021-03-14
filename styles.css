@@ -171,7 +171,8 @@ body {
     padding: 2px;
     margin: 4px 2px 4px 2px;
     max-height: 25px;
-    width: 37px;
+    max-width: 37px;
+    min-width: 37px;
 }
 
 .config {
