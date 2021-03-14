@@ -1,13 +1,15 @@
 $(function () {
 
     /*
-        * BUG 01: A veces, al aumentar el número de nodos, no se crean inputs para introducir sus valores.
-        * BUG 02: Al cambiar el número de nodos deberia de borrarse el array de animación.       
+            
     */
 
-    /*TODO:
-        * Mejorar la función para llevar elementos a sus respectivas posiciones
-        * Eliminar el array de animaciçon ante cualquier cambio en la entrada y reiniciar las variables
+    /*TODO:                
+        * Mejorar la interfaz de la animación
+        * Crea la validacion del Listo
+        * Buscar errores e intentar mejorar el codigo
+        * Cambiar la version a 1.3.0 y agregar el logo de github en la esquina como otras paginas
+        * Hacer el boton pausar y reiniciar animacionar
     */
     let cantidadNodos = 0;
     let veloInicial = 40;
@@ -15,16 +17,16 @@ $(function () {
     const aceleracion = 0.2;
     let toLeft;
     let toRight;
-    let permiteRepetidos = false;
+
+    const anchoNodo = 41;
 
     $("#cantidad").on("input", function (ev) {
         ev.preventDefault();
 
         if (ev.target.value > cantidadNodos) {
             $("#btn-qs").prop("disabled", true);
-            $("#btn-ss").prop("disabled", true);
-            $("#btn-cs").prop("disabled", true);
-            toggleBotonesAnimacion(true);
+            
+
         }
         if (ev.target.value === "") {
             crearArray(0);
@@ -87,16 +89,14 @@ $(function () {
 
     $("#alea-valores").on("click", function (ev) {
         ev.preventDefault();
-        if(!isNaN(parseInt($("#cantidad").val()))){
+        if (!isNaN(parseInt($("#cantidad").val()))) {
             $(".valores input").each(function () {
 
                 $(this).val(Math.round(Math.random() * 200 - 100));
-    
+
             });
             $("#btn-qs").prop("disabled", false);
-            $("#btn-ss").prop("disabled", false);
-            $("#btn-cs").prop("disabled", false);
-        }        
+        }
 
     });
 
@@ -107,9 +107,6 @@ $(function () {
 
         if (estanCompletosLosNodos()) {
             $("#btn-qs").prop("disabled", false);
-            $("#btn-ss").prop("disabled", false);
-            $("#btn-cs").prop("disabled", false);
-
         }
         if (ev.target.value > 200) {
             crearArray(200);
@@ -134,56 +131,54 @@ $(function () {
         }
 
     });
-    
+
     let oculto = false;
 
     tippy('#popup-btn-listo', {
         content: 'abasf',
     });
 
-    $("#btn-qs").on("click", function (ev) {        
-        ocultarConfiguraciones();          
-        aparecerAnimaciones();
-        toggleBotonesAnimacion(false);
+    $("#btn-qs").on("click", function (ev) {
+        toggleConfiguraciones();
+        toggleAnimaciones();
         crearListaDeNodos();
-        
+        if(!oculto){
+            $("body").css('overflow', 'hidden');
+        }
+        else {
+            $("body").css('overflow', 'auto');
+        }
     });
 
-    const ocultarConfiguraciones = () => {
-        if(!oculto){
+    const toggleConfiguraciones = () => {
+        if (!oculto) {
             oculto = true;
-            $(".ocultar").slideUp('fast', 'linear', function(){                
-                $("#btn-qs").html("No Listo <i class='fas fa-check-circle text-right'></i>");
+            $(".ocultar").slideUp('fast', 'linear', function () {
+                $("#btn-qs").html("No Listo <i class='fa fa-check-circle text-right'></i>");
                 $("#btn-qs").addClass('btn-danger');
                 $("#btn-qs").removeClass('btn-success');
-            });  
+            });
         }
         else {
             oculto = false;
-            $(".ocultar").slideDown('fast', 'linear', function(){                
-                $("#btn-qs").html("Listo <i class='fas fa-check-circle text-right'></i>");
+            $(".ocultar").slideDown('fast', 'linear', function () {
+                $("#btn-qs").html("Listo <i class='fa fa-check-circle text-right'></i>");
                 $("#btn-qs").addClass('btn-success');
-                $("#btn-qs").removeClass('btn-danger');   
-                         
-            });  
+                $("#btn-qs").removeClass('btn-danger');
+
+            });
         }
     }
 
-    const aparecerAnimaciones = () => {
-        if(oculto){
-            $(".animacion").css("display", "block");   
+    const toggleAnimaciones = () => {
+        if (oculto) {
+            $(".animacion").css("display", "block");
             $("#estado").text("Animación por empezar");
         }
         else {
-            $(".animacion").css("display", "none");   
+            $(".animacion").css("display", "none");
             $("#estado").text("");
         }
-    }
-
-    const toggleBotonesAnimacion = (valor) => {
-        $("#btn-play").prop("disabled", valor);
-        $("#btn-pause").prop("disabled", valor);
-        $("#btn-restart").prop("disabled", valor);
     }
 
     const crearArray = (numero) => {
@@ -224,16 +219,15 @@ $(function () {
 
     const crearListaDeNodos = () => {
         if (LISTACREADA) {
+            LISTACREADA = false;
             $("#pantallas").empty();
         }
 
-        const MAXELEMENTOS = 50;
         let contador = 1;
-
         crearPantalla(contador);
         let pantalla = $("#p" + contador);
-
-        let maximun = 50;
+        const MAXELEMENTOS = calcularMaximoPorPantalla();
+        let maximun = MAXELEMENTOS;
 
         $(".valores input").each(function (index, element) {
 
@@ -250,8 +244,25 @@ $(function () {
 
         LISTACREADA = true;
 
-
     }
+
+    const calcularMaximoPorPantalla = () => {
+        let anchoPantalla = $(".pantalla").innerWidth();
+        console.log(anchoPantalla, anchoNodo, Math.floor(anchoPantalla / anchoNodo));
+        return Math.floor(anchoPantalla / anchoNodo);
+    }
+
+
+
+    $(window).resize(function () {
+        if (LISTACREADA) {            
+            LISTACREADA = false;
+            $("#pantallas").empty();
+            toggleConfiguraciones();
+            toggleAnimaciones();
+        }
+
+    });
 
     const estanCompletosLosNodos = () => {
         let retorno = true;

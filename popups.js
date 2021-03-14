@@ -20,23 +20,40 @@ tippy('#icn-no-repes', {
     content: 'Permitir números repetidos en los nodos',
 });
 tippy('#icn-bg-pivote', {
-    content: 'Color de fondo del nodo pivote',
+    content: 'Es el nodo con el que se compará los otros nodos',
 });
 tippy('#icn-bg-j', {
-    content: 'Color de fondo del nodo "i"',
+    content: 'Es el que busca elementos menores al pivote',
 });
 tippy('#icn-bg-i', {
-    content: 'Color de fondo del nodo "j"',
+    content: 'Es el que busca elementos mayores al pivote',
 });
-tippy('#btn-play', {
+tippy('#popup-btn-play', {
     content: 'Inicia la animación',
 });
-tippy('#btn-pause', {
-    content: 'Pausa la animación (No disponible)',
+tippy('#popup-btn-pause', {
+    content: 'Pausa la animación si se esta ejecutando',
 });
-tippy('#btn-restart', {
-    content: 'Reinicia la animación (No disponible)',
+tippy('#popup-btn-restart', {
+    content: 'Reanuda la animación si esta pausada ',
 });
 tippy('#btn-qs', {
     content: 'Crea la animación',
 });
+
+$(function () {
+    // const alerta1 = tippy('.alertar1');
+    // alerta1.setProps({
+    //     content: 'asdad',
+    //     arrow: true,
+    //     animation: 'scale',
+    //   });
+    // console.log(alerta1);
+    // const alerta2 = tippy('.alertar2');
+    // $("#alea-valores").on('click', function(){
+    //     if(isNaN(parseInt($("#cantidad").val()))){            
+    //         alerta1.show();
+    //     }        
+    // });
+
+})
