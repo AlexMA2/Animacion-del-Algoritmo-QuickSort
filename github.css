@@ -1,0 +1,33 @@
+.github-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
+
+.github {
+    transform: rotateZ(45deg) translateY(-71px);    
+    background-color: #8230A4;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.github a {
+    color: #fff;
+}
+
+.github a:hover i{
+    color: #fff;
+    font-size: 45px;
+}
+
+.github a i {
+    margin-top: 57px;
+    font-size: 40px;
+    text-align: center;
+}

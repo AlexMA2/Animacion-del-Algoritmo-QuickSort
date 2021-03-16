@@ -1,16 +1,5 @@
 $(function () {
 
-    /*
-            
-    */
-
-    /*TODO:                
-        * Mejorar la interfaz de la animación
-        * Crea la validacion del Listo
-        * Buscar errores e intentar mejorar el codigo
-        * Cambiar la version a 1.3.0 y agregar el logo de github en la esquina como otras paginas
-        * Hacer el boton pausar y reiniciar animacionar
-    */
     let cantidadNodos = 0;
     let veloInicial = 40;
     let velocidad = veloInicial;
@@ -25,9 +14,8 @@ $(function () {
 
         if (ev.target.value > cantidadNodos) {
             $("#btn-qs").prop("disabled", true);
-            
-
         }
+
         if (ev.target.value === "") {
             crearArray(0);
         }
@@ -91,20 +79,16 @@ $(function () {
         ev.preventDefault();
         if (!isNaN(parseInt($("#cantidad").val()))) {
             $(".valores input").each(function () {
-
                 $(this).val(Math.round(Math.random() * 200 - 100));
-
             });
             $("#btn-qs").prop("disabled", false);
         }
-
     });
 
     let inputsLlenos = Array();
 
     $(".valores").on("input", "input", function (ev) {
         ev.preventDefault();
-
         if (estanCompletosLosNodos()) {
             $("#btn-qs").prop("disabled", false);
         }
@@ -142,7 +126,8 @@ $(function () {
         toggleConfiguraciones();
         toggleAnimaciones();
         crearListaDeNodos();
-        if(!oculto){
+        
+        if (!oculto) {
             $("body").css('overflow', 'hidden');
             tippy('#popup-btn-listo', {
                 content: 'Click aqui para ver la animación',
@@ -253,14 +238,14 @@ $(function () {
     }
 
     const calcularMaximoPorPantalla = () => {
-        let anchoPantalla = $(".pantalla").innerWidth();      
+        let anchoPantalla = $(".pantalla").innerWidth();
         return Math.floor(anchoPantalla / anchoNodo) - 1;
     }
 
 
 
     $(window).resize(function () {
-        if (LISTACREADA) {            
+        if (LISTACREADA) {
             LISTACREADA = false;
             $("#pantallas").empty();
             toggleConfiguraciones();

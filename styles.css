@@ -294,12 +294,21 @@ footer {
     }
 }
 
+@media (max-width: 1200px) {
+    .cuerpo-opcion {
+        height: 370px;
+    }
+}
+
 @media (max-width: 992px) {
     .cuerpo-opcion {
         border-radius: 0;
     }
     footer {
         margin-top: 20px;
+    }
+    body {
+        overflow: auto;
     }
 }
 
@@ -377,5 +386,14 @@ footer {
     }
     #btn-qs {
         width: 200px !important;
+    }
+}
+
+@media (max-width: 300px) {
+    .controles {
+        width: 250px;
+    }
+    .panel-control span button {
+        font-size: 12px;
     }
 }

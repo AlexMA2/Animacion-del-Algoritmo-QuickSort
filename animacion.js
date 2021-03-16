@@ -313,16 +313,12 @@ $(function () {
         if (!isNaN(valor)) {
             tiempoIntercambio = valor;
         }
-        else {
-            console.log("El tiempo de intercambio no es numero");
-        }
+        
         valor = parseInt($("#t-recorrido").val());
         if (!isNaN(valor)) {
             tiempoAvance = valor;
         }
-        else {
-            console.log("El tiempo de recorrido no es numero");
-        }
+       
         if ($('#no-repes').prop('checked')) {
             quitarHeaderFooter = true;
             $("header").slideUp('fast');
@@ -332,33 +328,26 @@ $(function () {
             quitarHeaderFooter = false;
             $("header").slideDown('fast');
             $("footer").css('display', 'block');
-        }
-       
-        console.log(quitarHeaderFooter);
+        }       
+        
         valor = $("#bg-pivote").val();
 
         if (esColor(valor)) {
             bgColorPivote = valor;
         }
-        else {
-            console.log(valor + " no es un color");
-        }
+        
         valor = $("#bg-i").val();
 
         if (esColor(valor)) {
             bgColorI = valor;
         }
-        else {
-            console.log(valor + " no es un color");
-        }
+        
         valor = $("#bg-j").val();
 
         if (esColor(valor)) {
             bgColorJ = valor;
         }
-        else {
-            console.log(valor + " no es un color");
-        }
+        
     });
 
     $("#reestablecer-config").on('click', function () {

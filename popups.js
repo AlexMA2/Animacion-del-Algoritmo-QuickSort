@@ -39,19 +39,3 @@ tippy('#popup-btn-restart', {
 });
 
 
-$(function () {
-    // const alerta1 = tippy('.alertar1');
-    // alerta1.setProps({
-    //     content: 'asdad',
-    //     arrow: true,
-    //     animation: 'scale',
-    //   });
-    // console.log(alerta1);
-    // const alerta2 = tippy('.alertar2');
-    // $("#alea-valores").on('click', function(){
-    //     if(isNaN(parseInt($("#cantidad").val()))){            
-    //         alerta1.show();
-    //     }        
-    // });
-
-})
