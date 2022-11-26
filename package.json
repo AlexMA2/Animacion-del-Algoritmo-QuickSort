@@ -1,0 +1,20 @@
+{
+  "name": "animacion-del-algoritmo-quicksort",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexMA2/Animacion-del-Algoritmo-QuickSort.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexMA2/Animacion-del-Algoritmo-QuickSort/issues"
+  },
+  "homepage": "https://github.com/AlexMA2/Animacion-del-Algoritmo-QuickSort#readme",
+  "dependencies": {
+    "@popperjs/core": "^2.11.6"
+  }
+}
